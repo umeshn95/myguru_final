@@ -48,36 +48,36 @@ const Signup = () => {
         }
         setLoading(true)
         // fetch("https://myguruonline.herokuapp.com${process.env.R.API_URL}/api/account/register/", {
-        fetch(`${process.env.R.API_URL}/api/account/register/`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(item)
+        fetch(`${process.env.REACT_APP_API_URL}/api/account/register/`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(item),
         }).then((result) => {
-            // console.log("Result", result.status)
-            if (result.status !== 400) {
-                alert.success("Registration Successfully!")
-                setLoading(false)
+          // console.log("Result", result.status)
+          if (result.status !== 400) {
+            alert.success("Registration Successfully!");
+            setLoading(false);
+          }
+          result.json().then((resp) => {
+            // console.log(resp)
+            setLoading(false);
+            if (result.status !== 200) {
+              alert.error(resp.detail);
             }
-            result.json().then((resp) => {
-                // console.log(resp)
-                setLoading(false)
-                if (result.status !== 200) {
-                    alert.error(resp.detail)
-                }
-                if (result.status === 200) {
-                    localStorage.setItem("user-details", JSON.stringify(resp));
-                    history.push("/login")
-                    setCampus("")
-                    setName("")
-                    setEmail("")
-                    setPassword("")
-                    setConfirmPassword("")
-                }
-            })
-        })
+            if (result.status === 200) {
+              localStorage.setItem("user-details", JSON.stringify(resp));
+              history.push("/login");
+              setCampus("");
+              setName("");
+              setEmail("");
+              setPassword("");
+              setConfirmPassword("");
+            }
+          });
+        });
     }
 //=================================================== Loader ===================================================//
     if (loading) {
