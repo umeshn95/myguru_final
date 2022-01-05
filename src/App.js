@@ -13,7 +13,7 @@ import signup from './Components/Authentication/signup';
 import Footer from './Components/FrontPages//Footer';
 import Prodected from './Prodected'
 import VocationalImages from './Components/FrontPages//VocationalImages';
-// import PageNotFound from './Components/FrontPages/PageNotFound';
+import PageNotFound from './Components/FrontPages/PageNotFound';
 import YouTube from './Components/YouTubeVideos/YouTube';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
